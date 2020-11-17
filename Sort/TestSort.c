@@ -32,16 +32,38 @@ int main()
     int n = 10;
     int *a = (int *)malloc(n * sizeof(int));
 
-    for (int i=0; i<n;i++)
+    /**
+ * 0: Bubble Sort
+ * 1: Selection Sort
+ * 2: InSertion Sort
+  */
+    char FlagSort = 0;
+
+    for (int i = 0; i < n; i++)
     {
-        *(a+i)=random_element_in_array(0, n);
+        *(a + i) = random_element_in_array(0, n);
     }
 
     print_array(a, n);
-    start = clock();
-    BubbleSort(a, n);
-    end = clock();
-    DBG("Time of algorithm: %f\n",(double)(end - start)/CLOCKS_PER_SEC);
-    print_array(a, n);
+    switch (FlagSort)
+    {
+    case 0:
+        start = clock();
+        BubbleSort(a, n);
+        end = clock();
+        DBG("Time of Bubble Sort algorithm: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
+        print_array(a, n);
+        break;
+    case 1:
+        start = clock();
+        SelectionSort(a, n);
+        end = clock();
+        DBG("Time of Selection Sort algorithm: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
+        print_array(a, n);
+        break;
+    default:
+        break;
+    }
+
     return 0;
 }

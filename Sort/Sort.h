@@ -16,6 +16,6 @@
 void swap(int *num1, int *num2);
 void BubbleSort(int *array, int size);
 void SelectionSort(int *array, int size);
-
+void InsertionSort(int *array, int size);
 
 #endif
