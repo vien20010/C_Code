@@ -60,7 +60,7 @@ void Push(int *Stack, int value, int capacity)
 {
     if (IsFull(capacity) == true)
     {
-        DBG("Stack is full now");
+        DBG("Stack is full now\n");
     }
     else
     {
@@ -80,7 +80,7 @@ void Pop(int *Stack, int capacity)
 {
     if (IsEmpty(capacity) == true)
     {
-        DBG("Stack is empty now, don't have any value to pop");
+        DBG("Stack is empty now, don't have any value to pop\n");
     }
     else
     {
@@ -100,7 +100,7 @@ void Top(int *Stack, int *value, int capacity)
 {
     if (IsEmpty(capacity) == true)
     {
-        DBG("Stack is empty now, don't have any value to get");
+        DBG("Stack is empty now, don't have any value to get\n");
     }
     else
     {
