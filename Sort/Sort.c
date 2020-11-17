@@ -45,3 +45,18 @@ void SelectionSort(int *array, int size)
         swap(array+min_index, array+i);
     }
 }
+
+void InsertionSort(int *array, int size)
+{
+    int last,j;
+    for (int i=1; i<size; i++)
+    {
+        last = *(array+i);
+        j=i;
+        while ((j>0)&&(*(array+j-1)>last))
+        {
+            swap(array+j-1,array+j);
+            j--;
+        }
+    }
+}

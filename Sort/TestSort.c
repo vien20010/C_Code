@@ -37,8 +37,10 @@ int main()
  * 1: Selection Sort
  * 2: InSertion Sort
   */
-    char FlagSort = 0;
-
+    int FlagSort = 0;
+    printf("Selection type of sort want to use:\n");
+    printf("0: Bubble Sort\n1: Selection Sort\n2: Insertion Sort\n");
+    scanf("%d",&FlagSort);
     for (int i = 0; i < n; i++)
     {
         *(a + i) = random_element_in_array(0, n);
@@ -59,6 +61,13 @@ int main()
         SelectionSort(a, n);
         end = clock();
         DBG("Time of Selection Sort algorithm: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
+        print_array(a, n);
+        break;
+    case 2:
+        start = clock();
+        InsertionSort(a, n);
+        end = clock();
+        DBG("Time of Insertion Sort algorithm: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
         print_array(a, n);
         break;
     default:
