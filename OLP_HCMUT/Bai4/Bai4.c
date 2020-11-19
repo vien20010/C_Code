@@ -1,4 +1,4 @@
-/** 
+/* * 
  * 
  * November 17th, 2020
  * LV_Embedded
@@ -62,6 +62,11 @@ int main()
     DBG("Undirected Graph:\n");
     print_array(graph, n);
 
+
+
+
+
+
     permute(a, 0, n - 1);
     DBG("min cost = %d\n", cost);
     return 0;
@@ -88,6 +93,9 @@ void print_array(int **arr, int n)
     }
 }
 
+
+
+
 void swap(char *a, char *b)
 {
     int temp;
@@ -111,7 +119,14 @@ void permute(char *a, int l, int r)
     if (l == r)
     {
         //Code here
+        DBG("permutation city:");
+/*         for (int j=0;j<=r;j++)
+        {
+            printf("%c\t",*(a+j));
+        }
+        printf("\n"); */
         printf("%s\n",a);
+        mincost(a,0,r);
     }
     else
     {
@@ -130,8 +145,9 @@ void mincost(char *a, int l, int r)
     for (int i = l; i <= r; i++)
     {
         //Calculate cost 
-        sum += *(*(graph + i % (r - l + 1)) + (i + 1) % (r - l + 1));
+        sum += *(*(graph + *(a+i % (r - l + 1))) + *(a+(i + 1) % (r - l + 1)));
     }
+    DBG("%d\n",sum);
     if (cost > sum)
     {
         cost = sum;
