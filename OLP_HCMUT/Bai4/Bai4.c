@@ -13,13 +13,21 @@
 #include <string.h>
 #include "Debug.h"
 
-unsigned int Factorial(unsigned int n);
-void print_array(unsigned int **arr, unsigned int n);
+int Factorial(int n);
+void print_array(int **arr, int n);
+void swap(char *a, char *b);
+void permute(char *a, int l, int r);
+void mincost(char *a, int l, int r);
+
+//Assume cost is internal
+int cost = 999999;
+int **graph;
 
 int main()
 {
     FILE *fptr_in, *fptr_out;
-    unsigned int n = 0;
+    int n = 0;
+    char a[] = {0, 1, 2, 3};
 
     fptr_in = fopen("City.inp", "r");
     if (fptr_in == NULL)
@@ -28,13 +36,13 @@ int main()
         return 0;
     }
     fscanf(fptr_in, "%u", &n);
-    unsigned int **graph;
-    graph = (unsigned int **)malloc(n * sizeof(unsigned int *));
+
+    graph = (int **)malloc(n * sizeof(int *));
     for (int i = 0; i < n; i++)
     {
-        *(graph + i) = (unsigned int *)malloc(n * sizeof(unsigned int));
+        *(graph + i) = (int *)malloc(n * sizeof(int));
     }
-    unsigned int row = 0, column = 0;
+    int row = 0, column = 0;
 
     // All element of undirected graph in City.inp file
     for (int i = 0; i < Factorial(n) / (2 * Factorial(n - 2)); i++)
@@ -50,21 +58,16 @@ int main()
     {
         *(*(graph + i) + i) = 0;
     }
-    /*     for (int i = 0; i < n; i++)
-    {
-        for (int j = 0; j < n; j++)
-        {
-            printf("%u\t", *(*(graph + i) + j));
-        }
-        printf("\n");
-    } */
+
     DBG("Undirected Graph:\n");
     print_array(graph, n);
 
+    permute(a, 0, n - 1);
+    DBG("min cost = %d\n", cost);
     return 0;
 }
 
-unsigned int Factorial(unsigned int n)
+int Factorial(int n)
 {
     if (n == 1)
     {
@@ -73,7 +76,7 @@ unsigned int Factorial(unsigned int n)
     return n * Factorial(n - 1);
 }
 
-void print_array(unsigned int **arr, unsigned int n)
+void print_array(int **arr, int n)
 {
     for (int i = 0; i < n; i++)
     {
@@ -82,5 +85,55 @@ void print_array(unsigned int **arr, unsigned int n)
             printf("%u\t", *(*(arr + i) + j));
         }
         printf("\n");
+    }
+}
+
+void swap(char *a, char *b)
+{
+    int temp;
+    temp = *a;
+    *a = *b;
+    *b = temp;
+}
+
+/**
+ * 
+ * @brief - calculate all permutation of string a begin from l to r
+ * @param a - String want to permute
+ * @param l - Starting index of the string
+ * @param r - Ending index of the string
+ * @retval - None
+ * 
+ */
+void permute(char *a, int l, int r)
+{
+    int i;
+    if (l == r)
+    {
+        //Code here
+        printf("%s\n",a);
+    }
+    else
+    {
+        for (i = l; i <= r; i++)
+        {
+            swap((a + l), (a + i));
+            permute(a, l + 1, r);
+            swap((a + l), (a + i));
+        }
+    }
+}
+
+void mincost(char *a, int l, int r)
+{
+    int sum = 0;
+    for (int i = l; i <= r; i++)
+    {
+        //Calculate cost 
+        sum += *(*(graph + i % (r - l + 1)) + (i + 1) % (r - l + 1));
+    }
+    if (cost > sum)
+    {
+        cost = sum;
     }
 }
