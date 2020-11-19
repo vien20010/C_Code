@@ -19,7 +19,7 @@ void print_2Darray(int **arr, int row, int column);
 void swap(char *a, char *b);
 void permute(char *a, int l, int r);
 void mincost(char *a, int l, int r);
-
+void DynamicProgramming();
 //Assume cost is internal
 int cost = 999999;
 int **graph;
@@ -71,7 +71,7 @@ int main()
     print_1Darray(Result, n);
     DBG("min cost = %d\n", cost);
 
-    //print result to input
+    //Export result to City.out
 
     fptr_out=fopen("City.out","w");
     if (fptr_out == NULL)
@@ -149,6 +149,8 @@ void permute(char *a, int l, int r)
         }
         printf("\n"); */
         /* printf("%s\n",a); */
+
+        //Call function calculate the cost of the Road
         mincost(a, 0, r);
     }
     else
@@ -168,6 +170,7 @@ void mincost(char *a, int l, int r)
     for (int i = l; i < r; i++)
     {
         //Calculate cost
+        //Using 2D pointer instead of 2D array
         sum += *(*(graph + *(a + i % (r - l + 1))) + *(a + (i + 1) % (r - l + 1)));
     }
     //DBG("%d\n", sum);
@@ -176,6 +179,7 @@ void mincost(char *a, int l, int r)
         cost = sum;
         for (int i = 0; i <= r; i++)
         {
+            //Save the road have min cost
             *(Result+i) = *(a + i)+1;
         }
     }
