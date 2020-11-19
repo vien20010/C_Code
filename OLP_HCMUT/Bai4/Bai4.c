@@ -14,7 +14,8 @@
 #include "Debug.h"
 
 int Factorial(int n);
-void print_array(int **arr, int n);
+void print_1Darray(char *arr, int n);
+void print_2Darray(int **arr, int row, int column);
 void swap(char *a, char *b);
 void permute(char *a, int l, int r);
 void mincost(char *a, int l, int r);
@@ -22,13 +23,14 @@ void mincost(char *a, int l, int r);
 //Assume cost is internal
 int cost = 999999;
 int **graph;
+char *Result;
 
 int main()
 {
     FILE *fptr_in, *fptr_out;
     int n = 0;
     char a[] = {0, 1, 2, 3};
-
+    
     fptr_in = fopen("City.inp", "r");
     if (fptr_in == NULL)
     {
@@ -44,6 +46,7 @@ int main()
     }
     int row = 0, column = 0;
 
+    Result=(char *)malloc(n*sizeof(char));
     // All element of undirected graph in City.inp file
     for (int i = 0; i < Factorial(n) / (2 * Factorial(n - 2)); i++)
     {
@@ -60,7 +63,7 @@ int main()
     }
 
     DBG("Undirected Graph:\n");
-    print_array(graph, n);
+    print_2Darray(graph, n,n);
 
 
 
@@ -68,6 +71,7 @@ int main()
 
 
     permute(a, 0, n - 1);
+    print_1Darray(Result,n);
     DBG("min cost = %d\n", cost);
     return 0;
 }
@@ -81,11 +85,22 @@ int Factorial(int n)
     return n * Factorial(n - 1);
 }
 
-void print_array(int **arr, int n)
+
+void print_1Darray(char *arr, int n)
 {
-    for (int i = 0; i < n; i++)
+    for (int i=0;i<n;i++)
     {
-        for (int j = 0; j < n; j++)
+        printf("%d\t",*(arr+i));
+    }
+    printf("\n");
+}
+
+
+void print_2Darray(int **arr, int row, int column)
+{
+    for (int i = 0; i < row; i++)
+    {
+        for (int j = 0; j < column; j++)
         {
             printf("%u\t", *(*(arr + i) + j));
         }
@@ -120,12 +135,12 @@ void permute(char *a, int l, int r)
     {
         //Code here
         DBG("permutation city:");
-/*         for (int j=0;j<=r;j++)
+        for (int j=0;j<=r;j++)
         {
-            printf("%c\t",*(a+j));
+            printf("%d\t",*(a+j));
         }
-        printf("\n"); */
-        printf("%s\n",a);
+        printf("\n");
+        /* printf("%s\n",a); */
         mincost(a,0,r);
     }
     else
@@ -151,5 +166,10 @@ void mincost(char *a, int l, int r)
     if (cost > sum)
     {
         cost = sum;
+        for (int i=l;i<=r;i++)
+        {
+            *Result=*(a+i);
+        }
     }
+    
 }
