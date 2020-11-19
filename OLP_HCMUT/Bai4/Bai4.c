@@ -20,6 +20,7 @@ void swap(char *a, char *b);
 void permute(char *a, int l, int r);
 void mincost(char *a, int l, int r);
 void DynamicProgramming();
+
 //Assume cost is internal
 int cost = 999999;
 int **graph;
