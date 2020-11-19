@@ -70,6 +70,22 @@ int main()
     DBG("Road: ");
     print_1Darray(Result, n);
     DBG("min cost = %d\n", cost);
+
+    //print result to input
+
+    fptr_out=fopen("City.out","w");
+    if (fptr_out == NULL)
+    {
+        DBG("Cannot open file\n");
+        return 0;
+    }
+
+    fprintf (fptr_out,"%d\n",cost);
+    for (int i=0;i<n-1;i++)
+    {
+        fprintf(fptr_out,"%d %d\n",*(Result+i),*(Result+i+1));
+    }
+    fclose(fptr_out);
     return 0;
 }
 
@@ -160,7 +176,7 @@ void mincost(char *a, int l, int r)
         cost = sum;
         for (int i = 0; i <= r; i++)
         {
-            *(Result+i) = *(a + i);
+            *(Result+i) = *(a + i)+1;
         }
     }
 }
