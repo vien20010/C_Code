@@ -21,5 +21,7 @@ void SelectionSort(int *array, int size);
 void InsertionSort(int *array, int size);
 void MergeSort(int *array, int l, int r);
 void Merge(int *array, int l, int m, int r);
+void QuickSort(int *array, int l, int r);
+int Partition (int *array, int l, int r);
 
 #endif

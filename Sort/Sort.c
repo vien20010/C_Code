@@ -63,7 +63,7 @@ void InsertionSort(int *array, int size)
 
 void MergeSort(int *array, int l, int r)
 {
-    int m=0;
+    int m = 0;
     if (l < r)
     {
         m = (r + l) / 2;
@@ -76,20 +76,20 @@ void MergeSort(int *array, int l, int r)
 
 void Merge(int *array, int l, int m, int r)
 {
-    int i,j,k,LeftIndex,RightIndex;
+    int i, j, k, LeftIndex, RightIndex;
     int *LeftArray;
-    int *RightArray ;
-    int n1 = m - l +1;
-    int n2 = r-m;
+    int *RightArray;
+    int n1 = m - l + 1;
+    int n2 = r - m;
     //DBG("In Merge Function\n");
     LeftArray = (int *)malloc(n1 * sizeof(int));
     RightArray = (int *)malloc(n2 * sizeof(int));
     //DBG("%d %d %d %d\n",l,m,r,n1);
-    for (i = 0; i <n1; i++)
+    for (i = 0; i < n1; i++)
     {
         *(LeftArray + i) = *(array + l + i);
     }
-    for ( i = 0; i < n2; i++)
+    for (i = 0; i < n2; i++)
     {
         *(RightArray + i) = *(array + m + 1 + i);
     }
@@ -127,4 +127,53 @@ void Merge(int *array, int l, int m, int r)
     }
     free(LeftArray);
     free(RightArray);
+}
+/** 
+ * 
+ * @brief - The main function that implements QuickSort 
+ * @param array - pointer to array want to sort
+ * @param l - starting index
+ * @param r - Ending index
+ * @return None
+ * 
+ **/
+void QuickSort(int *array, int l, int r)
+{
+    int PivotIndex;
+    if (l < r)
+    {
+        PivotIndex = Partition(array, l, r);
+        QuickSort(array, l, PivotIndex - 1);
+        QuickSort(array, PivotIndex + 1, r);
+    }
+}
+
+/**
+ * 
+ * @brief This function takes last element as pivot, places 
+   the pivot element at its correct position in sorted 
+    array, and places all smaller (smaller than pivot) 
+   to left of pivot and all greater elements to right 
+   of pivot
+ * @param array - pointer to array want to sort
+ * @param l - Starting index
+ * @param r - Ending index
+ * @return - Pivot Index
+ *   
+ **/
+int Partition(int *array, int l, int r)
+{
+    //Choose Pivot is the last element of array
+    int Pivot = *(array + r);
+    int i = l - 1, j = 0;
+    for (j = l; j < r; j++)
+    {
+        if (*(array + j) < Pivot)
+        {
+            i++;
+            swap(array + i, array + j);
+        }
+    }
+    swap(array + i + 1, array + r);
+    return i + 1;
 }

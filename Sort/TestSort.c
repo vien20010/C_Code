@@ -36,10 +36,12 @@ int main()
  * 0: Bubble Sort
  * 1: Selection Sort
  * 2: InSertion Sort
+ * 3: Merge Sort
+ * 4: Quick Sort
   */
     int FlagSort = 0;
-    printf("Selection type of sort want to use:\n");
-    printf("0: Bubble Sort\n1: Selection Sort\n2: Insertion Sort\n3: Merge Sort\n");
+    printf("0: Bubble Sort\n1: Selection Sort\n2: Insertion Sort\n3: Merge Sort\n4: QuickSort\n");
+    printf("Selection type of sort want to use: ");
     scanf("%d", &FlagSort);
     for (int i = 0; i < n; i++)
     {
@@ -74,9 +76,18 @@ int main()
         break;
     case 3:
         start = clock();
+        //DBG("%d\n",start);
         MergeSort(a, 0, n - 1);
         end = clock();
+        //DBG("%d\n",end);
         DBG("Time of Merge Sort algorithm: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
+        print_array(a, n);
+        break;
+    case 4:
+        start = clock();
+        QuickSort(a, 0, n - 1);
+        end = clock();
+        DBG("Time of Quick Sort algorithm: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
         print_array(a, n);
         break;
     default:
