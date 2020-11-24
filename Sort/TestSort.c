@@ -29,6 +29,7 @@ void print_array(int *arr, int n)
 int main()
 {
     clock_t start, end;
+    //start = clock();
     int n = 10;
     int *a = (int *)malloc(n * sizeof(int));
 

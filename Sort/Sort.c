@@ -73,7 +73,17 @@ void MergeSort(int *array, int l, int r)
     }
     //DBG("%d %d %d\n",l,m,r);
 }
-
+/**
+ * 
+ * @brief - Merges two subarrays of arr[].
+ First subarray is arr[l..m]
+ Second subarray is arr[m+1..r]
+ * @param array - pointer to array want to sort
+ * @param l - starting index
+ * @param r - Ending index
+ * @return None
+ * 
+  **/
 void Merge(int *array, int l, int m, int r)
 {
     int i, j, k, LeftIndex, RightIndex;
@@ -85,6 +95,7 @@ void Merge(int *array, int l, int m, int r)
     LeftArray = (int *)malloc(n1 * sizeof(int));
     RightArray = (int *)malloc(n2 * sizeof(int));
     //DBG("%d %d %d %d\n",l,m,r,n1);
+    /* Copy data to temp arrays LeftArray and RightArray */
     for (i = 0; i < n1; i++)
     {
         *(LeftArray + i) = *(array + l + i);
@@ -97,6 +108,7 @@ void Merge(int *array, int l, int m, int r)
     LeftIndex = 0;
     RightIndex = 0;
     k = l;
+    /* Merge the temp arrays back into array[l..r]*/
     while ((LeftIndex < n1) && (RightIndex < n2))
     {
         if (*(LeftArray + LeftIndex) < *(RightArray + RightIndex))
