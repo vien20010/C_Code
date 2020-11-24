@@ -81,10 +81,10 @@ void Merge(int *array, int l, int m, int r)
     int *RightArray ;
     int n1 = m - l +1;
     int n2 = r-m;
-    DBG("In Merge Function\n");
+    //DBG("In Merge Function\n");
     LeftArray = (int *)malloc(n1 * sizeof(int));
     RightArray = (int *)malloc(n2 * sizeof(int));
-    DBG("%d %d %d %d\n",l,m,r,n1);
+    //DBG("%d %d %d %d\n",l,m,r,n1);
     for (i = 0; i <n1; i++)
     {
         *(LeftArray + i) = *(array + l + i);
