@@ -63,13 +63,15 @@ void InsertionSort(int *array, int size)
 
 void MergeSort(int *array, int l, int r)
 {
+    int m=0;
     if (l < r)
     {
-        int m = (r - l) / 2;
+        m = (r + l) / 2;
         MergeSort(array, l, m);
         MergeSort(array, m + 1, r);
         Merge(array, l, m, r);
     }
+    //DBG("%d %d %d\n",l,m,r);
 }
 
 void Merge(int *array, int l, int m, int r)
@@ -79,10 +81,10 @@ void Merge(int *array, int l, int m, int r)
     int *RightArray ;
     int n1 = m - l +1;
     int n2 = r-m;
-    
+    DBG("In Merge Function\n");
     LeftArray = (int *)malloc(n1 * sizeof(int));
     RightArray = (int *)malloc(n2 * sizeof(int));
-    
+    DBG("%d %d %d %d\n",l,m,r,n1);
     for (i = 0; i <n1; i++)
     {
         *(LeftArray + i) = *(array + l + i);
