@@ -65,8 +65,10 @@ int main()
         break;
     case 2:
         start = clock();
+        //DBG("%d\n",start);
         InsertionSort(a, n);
         end = clock();
+        //DBG("%d\n",end);
         DBG("Time of Insertion Sort algorithm: %f\n", (double)(end - start) / CLOCKS_PER_SEC);
         print_array(a, n);
         break;
@@ -80,6 +82,6 @@ int main()
     default:
         break;
     }
-
+    free(a);
     return 0;
 }

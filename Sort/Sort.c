@@ -66,7 +66,6 @@ void MergeSort(int *array, int l, int r)
     if (l < r)
     {
         int m = (r - l) / 2;
-        DBG("%d\n",m);
         MergeSort(array, l, m);
         MergeSort(array, m + 1, r);
         Merge(array, l, m, r);
@@ -75,22 +74,28 @@ void MergeSort(int *array, int l, int r)
 
 void Merge(int *array, int l, int m, int r)
 {
+    int i,j,k,LeftIndex,RightIndex;
     int *LeftArray;
     int *RightArray ;
+    int n1 = m - l +1;
+    int n2 = r-m;
     
-    LeftArray = (int *)malloc((m - l + 1) * sizeof(int));
-    RightArray = (int *)malloc((r - m) * sizeof(int));
-    for (int i = 0; i < m - l + 1; i++)
+    LeftArray = (int *)malloc(n1 * sizeof(int));
+    RightArray = (int *)malloc(n2 * sizeof(int));
+    
+    for (i = 0; i <n1; i++)
     {
         *(LeftArray + i) = *(array + l + i);
     }
-    for (int i = 0; i < r - m; i++)
+    for ( i = 0; i < n2; i++)
     {
         *(RightArray + i) = *(array + m + 1 + i);
     }
 
-    int LeftIndex = 0, RightIndex = 0, k = 0;
-    while ((LeftIndex < (m - l + 1)) && (RightIndex < (r - m)))
+    LeftIndex = 0;
+    RightIndex = 0;
+    k = l;
+    while ((LeftIndex < n1) && (RightIndex < n2))
     {
         if (*(LeftArray + LeftIndex) < *(RightArray + RightIndex))
         {
@@ -105,18 +110,19 @@ void Merge(int *array, int l, int m, int r)
         k++;
     }
 
-    while (LeftIndex < (m - l + 1))
+    while (LeftIndex < n1)
     {
         *(array + k) = *(LeftArray + LeftIndex);
         LeftIndex++;
         k++;
     }
 
-    while (RightIndex < (r - m))
+    while (RightIndex < n2)
     {
         *(array + k) = *(RightArray + RightIndex);
         RightIndex++;
         k++;
     }
-    
+    free(LeftArray);
+    free(RightArray);
 }
