@@ -8,6 +8,3 @@ OBJ = NMLT_Horcrux.o
 
 NMLT_Horcrux: $(OBJ)
 	gcc -o $@ $^ $(CFLAGS)
-
-clean:
-	del $(OBJ)
