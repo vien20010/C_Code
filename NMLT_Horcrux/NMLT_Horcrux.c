@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define	DEBUG
+//#define	DEBUG
 
 #ifdef DEBUG
     #define DBG(fmt, ...) printf("%s:  %s:  %d: " fmt, __FILE__, __FUNCTION__, __LINE__, ##__VA_ARGS__)
@@ -23,7 +23,7 @@
     #define DBG(fmt, args...)
 #endif
 
-int list[] = {0, 198, 999, 0, 777};
+
 
 int Check_Prime(int n);
 int gcd(int a, int b);
@@ -37,9 +37,12 @@ void copy_array(int *src, int *dest, int size);
 int Fibonacci(int n);
 int Check_Fibonacci(int n);
 
+
+
 int main()
 {
-    Journey(11, 2, 3, 11, list, 5);
+    int list8[] = {0,108,0,234,235,0,666,0,0,0,0,0,106,107,0};
+    Journey(0,5,4,711, list8 ,15);
     return 0;
 }
 
