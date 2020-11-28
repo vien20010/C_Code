@@ -29,7 +29,7 @@ int Check_Prime(int n);
 int gcd(int a, int b);
 int Coprime(int a, int b);
 int Square_Number(int n);
-void Journey(int r, int n, int id, int m, int array[], int size);
+void journey(int r, int n, int id, int m, int array[], int size);
 int Find_Continious_Element(int *array, int size);
 void BubbleSort(int *array, int size);
 void swap(int *num1, int *num2);
@@ -41,12 +41,12 @@ int Check_Fibonacci(int n);
 
 int main()
 {
-    int list8[] = {0,108,0,234,235,0,666,0,0,0,0,0,106,107,0};
-    Journey(0,5,4,711, list8 ,15);
+int list8 [] = {0,108,0,234,235,0,666,0,0,0,0,0,106,107,0};
+journey(0,5,4,711, list8 ,15);
     return 0;
 }
 
-void Journey(int r, int n, int id, int m, int array[], int size)
+void journey(int r, int n, int id, int m, int array[], int size)
 {
     int HP, HPmax, h1, h2, P = 1, Q = 1, i, j;
     int Horcrux = 0;
